@@ -46,6 +46,7 @@ a:hover {
   background-color: #ffffff;
   height: 116px;
   text-align: center;
+  box-shadow: 3px 3px 10px 1px black;
 }
 p {
   padding: 10px;
