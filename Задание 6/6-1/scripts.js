@@ -8,27 +8,34 @@ const list = document.querySelector("ul");
 btnAdd.addEventListener("click", () => {
   if (input.value) {
     const li = document.createElement("li");
+    let span = document.createElement("span");
     const btnDel = document.createElement("button");
     const btnDone = document.createElement("button");
 
-    // Создание элементов li и button
+    // Создание элементов p и button
     btnDone.textContent = "✓";
     btnDel.textContent = "-";
-    li.textContent = input.value;
+    span.textContent = input.value;
 
     // Добавление классов кнопкам в элементе li
     btnDel.classList.add("del");
     btnDone.classList.add("done");
-    
+
     // Добавление стилей
-    btnDone.style.margin="0 10px 0 100px";
-    btnDel.style.height="23px";
-    li.style.width="fit-content";
-    li.style.marginBottom="10px"
+    btnDone.style.margin = "0 10px 0 100px";
+    btnDel.style.height = "23px";
+    li.style.width = "fit-content";
+    li.style.marginBottom = "10px";
+    li.style.borderBottom = "2px solid black";
 
-
-    li.append(btnDone, btnDel);
+    li.append(span, btnDone, btnDel);
     list.appendChild(li);
+
+    // Редактирование задач
+    span.addEventListener("dblclick", ()=>{
+      let redaction = prompt("Отредайтируйте задачу", span.innerText);
+      span.innerText=redaction;
+    })
 
     // Функционал выделения выполненных задач
     btnDone.addEventListener("click", () => {
@@ -38,9 +45,8 @@ btnAdd.addEventListener("click", () => {
         btnDone.textContent = "✓";
       } else {
         li.style.backgroundColor = "greenyellow";
-        btnDone.textContent="⨉";
-      };
-      console.log("click");
+        btnDone.textContent = "⨉";
+      }
     });
 
     // Функционал удаления задачи
