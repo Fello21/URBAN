@@ -1,0 +1,36 @@
+header {
+  display: flex;
+  align-items: center;
+}
+h1 {
+  position: relative;
+}
+h1::after {
+  content: "";
+  position: absolute;
+  border-color:brown;
+  border-style: solid;
+  border-radius: 5px;
+  height: 60px;
+  top: -15px;
+  right: -15px;
+}
+nav>ul {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+}
+nav>ul>li {
+  font-size: larger;
+  margin: 3px;
+}
+a {
+  color: black;
+  text-decoration: none;
+}
+a:hover {
+  color:burlywood;
+}
+a:focus {
+  color:cornsilk;
+}
