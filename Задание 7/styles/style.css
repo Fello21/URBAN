@@ -93,6 +93,7 @@ header > span {
   text-align: center;
   margin-top: 149px;
   margin-bottom: 116px;
+  z-index: -1;
 }
 
 .collection > div::after {
@@ -358,6 +359,7 @@ button:active {
   position: relative;
   font-family: "Open Sans";
   gap: 65px;
+  z-index: -1;
 }
 
 h4 {
