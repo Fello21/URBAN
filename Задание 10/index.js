@@ -29,7 +29,6 @@ let btnDel;
         method: "DELETE",
       })
         .then(res => res.json())
-        .then(json => console.log(json))
         .then(() => alert("Product seccessfully delete"))
         btnDel[i].parentElement.remove()
     });
@@ -61,7 +60,6 @@ let btnDel;
           method: "DELETE",
         })
           .then(res => res.json())
-          .then(json => console.log(json))
           .then(() => alert("Product seccessfully delete"))
           btnDel[i].parentElement.remove()
       });
