@@ -1,10 +1,12 @@
 let listProds;
-const body = document.querySelector("body");
+const main = document.querySelector(".all-products");
 let counter = 0;
+let btnDel;
 
 (async () => {
   try {
     let response = await fetch("https://fakestoreapi.com/products");
+    listProds = await response.json();
   } catch (err) {
     console.log("Ошибка:" + err);
   }
@@ -14,42 +16,61 @@ let counter = 0;
     const cardProd = document.createElement("div");
     cardProd.classList.add("card-product");
     cardProd.innerHTML = `
+        <span class="card-product__del">&times;</span>
         <img src=${listProds[i].image} alt="Product figure" class="card-product__img">
         <h2 class="card-product__name">${listProds[i].title}</h2>
-        <span class="card-product__price">${listProds[i].price}</span>
+        <span class="card-product__price">${listProds[i].price} $</span>
         <p class="card-product__disc">${listProds[i].description}</p>`;
 
-    body.appendChild(cardProd);
+    main.appendChild(cardProd);
+    btnDel = document.querySelectorAll(".card-product__del");
+    btnDel[i].addEventListener("click", () => {
+      fetch(`https://fakestoreapi.com/products/${i}`, {
+        method: "DELETE",
+      })
+        .then(res => res.json())
+        .then(json => console.log(json))
+        .then(() => alert("Product seccessfully delete"))
+        btnDel[i].parentElement.remove()
+    });
 
     counter++;
   }
   const btnMore = document.createElement("button");
   btnMore.classList.add("btn-more");
   btnMore.innerText = "Show more";
-  body.appendChild(btnMore);
+  main.appendChild(btnMore);
   btnMore.addEventListener("click", showMore);
   function showMore() {
-    let initialCounter = counter + 6;
-    for (let i = counter; i < initialCounter; i++) {
+    let initialCounter = counter + 5;
+    for (let i = counter; i <= initialCounter; i++) {
       const cardProd = document.createElement("div");
       cardProd.classList.add("card-product");
       cardProd.innerHTML = `
       <span class="card-product__del">&times;</span>
       <img src="${listProds[i].image}" alt="Product figure" class="card-product__img">
       <h2 class="card-product__name">${listProds[i].title}</h2>
-      <span class="card-product__price">${listProds[i].price}</span>
-      <p class="card-product__disc">${listProds[i].description}</p>"`;
+      <span class="card-product__price">${listProds[i].price} $</span>
+      <p class="card-product__disc">${listProds[i].description}</p>`;
 
-      body.insertBefore(cardProd, btnMore);
+      main.insertBefore(cardProd, btnMore);
+
+      btnDel = document.querySelectorAll(".card-product__del");
+      btnDel[i].addEventListener("click", () => {
+        fetch(`https://fakestoreapi.com/products/${i}`, {
+          method: "DELETE",
+        })
+          .then(res => res.json())
+          .then(json => console.log(json))
+          .then(() => alert("Product seccessfully delete"))
+          btnDel[i].parentElement.remove()
+      });
+
       counter++;
+      if (counter == listProds.length) {
+        btnMore.classList.add("hidden");
+        break;
+      }
     }
   }
-  const btnDel = document.querySelector(".card-product__del");
-  btnDel.addEventListener("click", ()=>{
-    fetch(`https://fakestoreapi.com/products`,{
-      method:"DELETE"
-    })
-    .then(res=>res.json)
-    .then(json=>console.log(json))
-  })
 })();

@@ -12,9 +12,9 @@ btnAdd.addEventListener("click", (event) => {
       title: nameProd.value,
       price: priceProd.value,
       description: descProd.value,
-      category: categProd.value,
+      category: categProd.value
     }),
   })
     .then((res) => res.json())
-    .then((json) => console.log(json));
+    .then(()=>alert("Your product successfuly added"));
 });
