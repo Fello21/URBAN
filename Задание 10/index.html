@@ -34,6 +34,17 @@
       </div>
       <button type="submit" class="card-creater__add">Add product</button>
     </form>
+    <div class="filter">
+      <label for="categ">Category:</label>
+      <input list="categories" id="categ" class="filter-value" required>
+      <datalist id="categories">
+        <option value="electronics"></option>
+        <option value="jewelry"></option>
+        <option value="man's clothing"></option>
+        <option value="woman's clothing"></option>
+      </datalist>
+      <button class="filte-btn">Filter</button>
+    </div>
     <main class="all-products">
     </main>
   <script src="./index.js"></script>
