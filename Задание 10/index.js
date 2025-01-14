@@ -30,7 +30,7 @@ btnFilter.addEventListener("click", async () => {
   }
 
   main.innerHTML = "";
-  
+  filterValue.value = "";
   addAllAboutCards(filterList);
 });
 
